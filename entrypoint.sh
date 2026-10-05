@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# Copy configuration files from backup if they don't exist (Railway volume mount scenario)
-if [ ! -f "/etc/searxng/settings.yml" ] && [ -f "/etc/searxng-backup/settings.yml" ]; then
-    echo "Volume mount detected, copying configuration files from backup..."
-    cp -r /etc/searxng-backup/* /etc/searxng/
-    echo "Configuration files copied successfully"
+# Always refresh configuration from the image backup on every deploy so that
+# settings.yml changes in the repo take effect despite the persistent volume
+if [ -f "/etc/searxng-backup/settings.yml" ]; then
+    echo "Volume mount detected, refreshing configuration from backup..."
+    cp -rf /etc/searxng-backup/* /etc/searxng/
+    echo "Configuration refreshed successfully"
 fi
 
 # Update the secret key from environment variable at runtime

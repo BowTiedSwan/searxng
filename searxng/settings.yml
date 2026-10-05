@@ -3,6 +3,9 @@ use_default_settings: true
 general:
   debug: true
 search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "en"
   formats:
     - html
     - json
@@ -17,3 +20,21 @@ ui:
 # Redis configuration
 # redis:
 #   url: ${REDIS_URL}
+
+# Engine overrides (merged with defaults via use_default_settings).
+# Prioritize independent upstream engines; disable the most filtered ones.
+engines:
+  - name: mojeek
+    disabled: false
+  - name: gibiru
+    disabled: false
+  - name: qwant
+    disabled: false
+  - name: duckduckgo
+    disabled: false
+  - name: startpage
+    disabled: false
+  - name: google
+    disabled: true
+  - name: bing
+    disabled: true
