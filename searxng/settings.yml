@@ -36,5 +36,7 @@ engines:
     disabled: false
   - name: google
     disabled: true
+  - name: google cse
+    disabled: true
   - name: bing
     disabled: true
